@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidate List - Mini ATS</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: linear-gradient(135deg, #e0e7ff 0%, #f9fafb 70%, #c7ddff 100%);
+    }
+    header {
+        background-color: rgba(74,144,226,0.95);
+        color: white;
+        padding: 1rem;
+        text-align: center;
+    }
+    main {
+        padding: 20px;
+        max-width: 1000px;
+        margin: auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    input, select {
+        margin-bottom: 10px;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+    th {
+        background: #f1f5fa;
+    }
+    button {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #c0392b;
+    }
+    a {
+        display: inline-block;
+        margin-bottom: 10px;
+        text-decoration: none;
+        color: #4a90e2;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Candidate List</h1>
+</header>
+
+<main>
+    <a href="index.html">← Add New Candidate</a><br>
+    <input type="text" id="search" placeholder="Search by name...">
+    <select id="filterStage">
+        <option value="">All Stages</option>
+        <option value="Screened">Screened</option>
+        <option value="Interviewed">Interviewed</option>
+        <option value="Offered">Offered</option>
+        <option value="Hired">Hired</option>
+    </select>
+
+    <table id="candidateTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Channel</th>
+                <th>Resume</th>
+                <th>Stage</th>
+                <th>Follow-up</th>
+                <th>Feedback</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</main>
+
+<script>
+    let candidates = JSON.parse(localStorage.getItem('candidates')) || [];
+    const tableBody = document.querySelector('#candidateTable tbody');
+    const searchInput = document.getElementById('search');
+    const filterStage = document.getElementById('filterStage');
+
+    function renderCandidates() {
+        const searchValue = searchInput.value.toLowerCase();
+        const stageFilter = filterStage.value;
+
+        tableBody.innerHTML = '';
+        candidates
+            .filter(c => c.name.toLowerCase().includes(searchValue))
+            .filter(c => stageFilter === "" || c.stage === stageFilter)
+            .forEach((c, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${c.name}</td>
+                    <td>${c.channel}</td>
+                    <td><a href="${c.resume}" target="_blank">View</a></td>
+                    <td>${c.stage}</td>
+                    <td>${c.followUp || '-'}</td>
+                    <td>${c.feedback || '-'}</td>
+                    <td><button onclick="deleteCandidate(${index})">Delete</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+    }
+
+    function deleteCandidate(index) {
+        candidates.splice(index, 1);
+        localStorage.setItem('candidates', JSON.stringify(candidates));
+        renderCandidates();
+    }
+
+    searchInput.addEventListener('input', renderCandidates);
+    filterStage.addEventListener('change', renderCandidates);
+
+    renderCandidates();
+</script>
+
+</body>
+</html>

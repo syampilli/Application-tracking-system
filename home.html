@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini ATS - Home</title>
+<style>
+    /* Reset & Basic */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #002b5c 0%, #00509e 40%, #0074cc 100%);
+        color: white;
+        overflow-x: hidden;
+    }
+
+    /* Header / Hero Section */
+    header {
+        text-align: center;
+        padding: 60px 20px 40px;
+        animation: fadeIn 1.2s ease;
+    }
+    header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+    header p {
+        max-width: 650px;
+        margin: auto;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    /* Call to Action Button */
+    .cta {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 14px 28px;
+        font-size: 1.1rem;
+        color: white;
+        background: linear-gradient(45deg, #ff7c57, #ff4e00);
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        animation: bounceIn 1.2s ease;
+    }
+    .cta:hover {
+        background: linear-gradient(45deg, #ff916e, #ff5e1a);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    /* Features Section */
+    .features {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 50px 20px;
+        animation: fadeInUp 1s ease;
+    }
+    .feature {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(6px);
+        padding: 25px;
+        width: 300px;
+        border-radius: 12px;
+        text-align: center;
+        transition: transform 0.3s ease, background 0.3s ease;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .feature:hover {
+        transform: translateY(-5px);
+        background: rgba(255,255,255,0.15);
+    }
+    .feature h3 {
+        margin-bottom: 12px;
+        font-size: 1.3rem;
+        color: #ffdfba;
+    }
+    .feature p {
+        font-size: 0.95rem;
+        opacity: 0.85;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+        background: rgba(0,0,0,0.2);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px);}
+        to { opacity: 1; transform: translateY(0);}
+    }
+    @keyframes bounceIn {
+        0% { transform: scale(0.8); opacity: 0;}
+        60% { transform: scale(1.05); opacity: 1;}
+        100% { transform: scale(1);}
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        header h1 { font-size: 2.2rem; }
+        .feature { width: 90%; }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Mini ATS</h1>
+    <p>Streamline your hiring process with our lightweight, responsive Applicant Tracking System.  
+       Easily add, track, and manage your candidates from anywhere, on any device.</p>
+    <a href="index.html" class="cta">🚀 Enter Mini ATS</a>
+</header>
+
+<section class="features">
+    <div class="feature">
+        <h3>📋 Easy Candidate Entry</h3>
+        <p>Quickly add candidate details, resumes, and notes with our simple form interface.</p>
+    </div>
+    <div class="feature">
+        <h3>🔍 Smart Filtering</h3>
+        <p>Search, filter, and sort candidates to find the right match in seconds.</p>
+    </div>
+    <div class="feature">
+        <h3>📊 Stage Tracking</h3>
+        <p>Track candidates through hiring stages from screening to hiring, all in one place.</p>
+    </div>
+</section>
+
+<footer>
+    &copy; 2025 Mini ATS. All rights reserved.
+</footer>
+
+</body>
+</html>
